@@ -204,9 +204,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                         ),
                       ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.selfStarter,
-                        child: Text('--------------'),
+                      PopupMenuItem<WhyFarther>(
+                        value: WhyFarther.harder,
+                        child: const Divider(
+                          height: 10,
+                          thickness: 5,
+                          indent: 0,
+                          endIndent: 0,
+                        ),
                       ),
                       const PopupMenuItem<WhyFarther>(
                         value: WhyFarther.selfStarter,
@@ -1021,6 +1026,149 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                 ],
+              ),
+            ),
+            SingleChildScrollView(
+              child: Card(
+                margin: const EdgeInsets.only(
+                    left: 20.0, right: 20.0, top: 20, bottom: 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      title: Center(
+                          child: Text('Tedarikçi Adresleri Ekranı',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(fontWeight: FontWeight.bold))),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Flexible(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.only(
+                                left: 20.0, right: 20.0),
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Tedarikçi Adı:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Tedarikçi Adı giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  maxLines: 20,
+                                  textAlignVertical: TextAlignVertical.top,
+                                  textAlign: TextAlign.start,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Adres:',
+                                    alignLabelWithHint: true,
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Adres giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Posta Kodu:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Posta Kodu giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Telefon:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Telefon giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Fax:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Fax giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'E-Mail:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen E-Mail giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Web Adresi:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Web Adresi giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                Text('İl Seçiniz:'),
+                                const SizedBox(height: 16),
+                                MyStatefulWidget(),
+                                Text('İlçe Seçiniz:'),
+                                const SizedBox(height: 16),
+                                MyStatefulWidget2(),
+                                const SizedBox(height: 16),
+                                ElevatedButton(
+                                  style: style,
+                                  onPressed: () {},
+                                  child: const Text('Kaydet'),
+                                ),
+                                const SizedBox(height: 16),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
