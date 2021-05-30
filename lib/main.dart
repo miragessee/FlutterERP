@@ -178,13 +178,31 @@ class _MyHomePageState extends State<MyHomePage> {
                           endIndent: 0,
                         ),
                       ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.selfStarter,
-                        child: Text('Tedarikçiler'),
+                      PopupMenuItem<WhyFarther>(
+                        value: WhyFarther.harder,
+                        child: ListTile(
+                          title: Text("Tedarikçiler"),
+                          onTap: () {
+                            print('tedarikçiler tikladin');
+                            Navigator.pop(context);
+                            _controller.animateToPage(6,
+                                duration: Duration(seconds: 1),
+                                curve: Curves.easeOut);
+                          },
+                        ),
                       ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.selfStarter,
-                        child: Text('Tedarikçi Adres'),
+                      PopupMenuItem<WhyFarther>(
+                        value: WhyFarther.harder,
+                        child: ListTile(
+                          title: Text("Tedarikçi Adres"),
+                          onTap: () {
+                            print('tedarikçi adres tikladin');
+                            Navigator.pop(context);
+                            _controller.animateToPage(7,
+                                duration: Duration(seconds: 1),
+                                curve: Curves.easeOut);
+                          },
+                        ),
                       ),
                       const PopupMenuItem<WhyFarther>(
                         value: WhyFarther.selfStarter,
@@ -887,6 +905,122 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
+              ),
+            ),
+            Card(
+              margin: const EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 20, bottom: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    title: Center(
+                        child: Text('Tedarikçiler Ekranı',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6!
+                                .copyWith(fontWeight: FontWeight.bold))),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Flexible(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.only(
+                              left: 20.0, right: 20.0),
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Tedarikçi No:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Tedarikçi No giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Tedarikçi Adı:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Tedarikçi Adı giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Tedarikçi Alternatif Adı:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Tedarikçi Alternatif Adı giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Sorumlu Kişi:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Sorumlu Kişi giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Ünvanı:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Ünvanı giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Durum:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Durum giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              ElevatedButton(
+                                style: style,
+                                onPressed: () {},
+                                child: const Text('Kaydet'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
