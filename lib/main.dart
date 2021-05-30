@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -120,13 +121,27 @@ class _MyHomePageState extends State<MyHomePage> {
                           endIndent: 0,
                         ),
                       ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.tradingCharter,
-                        child: Text('Ürünler'),
+                      PopupMenuItem<WhyFarther>(
+                        value: WhyFarther.harder,
+                        child: ListTile(
+                          title: Text("Ürünler"),
+                          onTap: () {
+                            print('ürünler tikladin');
+                            Navigator.pop(context);
+                            _controller.animateToPage(3,
+                                duration: Duration(seconds: 1),
+                                curve: Curves.easeOut);
+                          },
+                        ),
                       ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.selfStarter,
-                        child: Text('--------------'),
+                      PopupMenuItem<WhyFarther>(
+                        value: WhyFarther.harder,
+                        child: const Divider(
+                          height: 10,
+                          thickness: 5,
+                          indent: 0,
+                          endIndent: 0,
+                        ),
                       ),
                       const PopupMenuItem<WhyFarther>(
                         value: WhyFarther.selfStarter,
@@ -415,6 +430,181 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                 ],
+              ),
+            ),
+            SingleChildScrollView(
+              child: Card(
+                margin: const EdgeInsets.only(
+                    left: 20.0, right: 20.0, top: 20, bottom: 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      title: Center(
+                          child: Text('Ürünler Ekranı',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(fontWeight: FontWeight.bold))),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Flexible(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.only(
+                                left: 20.0, right: 20.0),
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Ürün No:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Ürün No giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Ürün Adı:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Ürün Adı giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Fıyat:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Fiyat giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Ölçek:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Ölçek giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Tedariçi:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Tedarikçi giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Durum:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Durum giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Stok Alt Seviye:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Stok Alt Seviye giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Stok Üst Seviye:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Stok Üst Seviye giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Stok Optimal Seviye:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Stok Optimal Seviye giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  maxLines: 20,
+                                  textAlignVertical: TextAlignVertical.top,
+                                  textAlign: TextAlign.start,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Açıklama:',
+                                    alignLabelWithHint: true,
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Açıklama giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                ElevatedButton(
+                                  style: style,
+                                  onPressed: () {},
+                                  child: const Text('Kaydet'),
+                                ),
+                                const SizedBox(height: 16),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
