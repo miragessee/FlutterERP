@@ -294,13 +294,27 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                         ),
                       ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.smarter,
-                        child: Text('Stok Çıkışı'),
+                      PopupMenuItem<WhyFarther>(
+                        value: WhyFarther.harder,
+                        child: ListTile(
+                          title: Text("Stok Çıkışı"),
+                          onTap: () {
+                            print('stok çıkışı tikladin');
+                            Navigator.pop(context);
+                            _controller.animateToPage(13,
+                                duration: Duration(seconds: 1),
+                                curve: Curves.easeOut);
+                          },
+                        ),
                       ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.selfStarter,
-                        child: Text('--------------'),
+                      PopupMenuItem<WhyFarther>(
+                        value: WhyFarther.harder,
+                        child: const Divider(
+                          height: 10,
+                          thickness: 5,
+                          indent: 0,
+                          endIndent: 0,
+                        ),
                       ),
                       const PopupMenuItem<WhyFarther>(
                         value: WhyFarther.tradingCharter,
@@ -1658,6 +1672,122 @@ class _MyHomePageState extends State<MyHomePage> {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Lütfen Giriş Miktarı giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Ölçek:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Ölçek giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              ElevatedButton(
+                                style: style,
+                                onPressed: () {},
+                                child: const Text('Kaydet'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: const EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 20, bottom: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    title: Center(
+                        child: Text('Stok Çıkışı Ekranı',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6!
+                                .copyWith(fontWeight: FontWeight.bold))),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Flexible(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.only(
+                              left: 20.0, right: 20.0),
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Stok Çıkış No:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Stok Çıkış No giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Ürün:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Ürün giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Satış No:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Satış No giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Stok Çıkış Tarihi:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Stok Çıkış Tarihi giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Çıkış Miktarı:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Çıkış Miktarı giriniz';
                                   }
                                   return null;
                                 },
