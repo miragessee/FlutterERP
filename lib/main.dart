@@ -746,6 +746,149 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+            SingleChildScrollView(
+              child: Card(
+                margin: const EdgeInsets.only(
+                    left: 20.0, right: 20.0, top: 20, bottom: 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      title: Center(
+                          child: Text('Müşteri Adresi Ekranı',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(fontWeight: FontWeight.bold))),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Flexible(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.only(
+                                left: 20.0, right: 20.0),
+                            child: Column(
+                              children: [
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Müşteri Adı:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Müşteri Adı giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  maxLines: 20,
+                                  textAlignVertical: TextAlignVertical.top,
+                                  textAlign: TextAlign.start,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Adres:',
+                                    alignLabelWithHint: true,
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Adres giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Posta Kodu:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Posta Kodu giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Telefon:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Telefon giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Fax:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Fax giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'E-Mail:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen E-Mail giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                TextFormField(
+                                  readOnly: false,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Web Adresi:',
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Lütfen Web Adresi giriniz';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                Text('İl Seçiniz:'),
+                                const SizedBox(height: 16),
+                                MyStatefulWidget(),
+                                Text('İlçe Seçiniz:'),
+                                const SizedBox(height: 16),
+                                MyStatefulWidget2(),
+                                const SizedBox(height: 16),
+                                ElevatedButton(
+                                  style: style,
+                                  onPressed: () {},
+                                  child: const Text('Kaydet'),
+                                ),
+                                const SizedBox(height: 16),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -783,6 +926,54 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         });
       },
       items: <String>['Adana','Adıyaman', 'Afyon', 'Ağrı', 'Amasya', 'Ankara', 'Antalya', 'Artvin',
+        'Aydın', 'Balıkesir','Bilecik', 'Bingöl', 'Bitlis', 'Bolu', 'Burdur', 'Bursa', 'Çanakkale',
+        'Çankırı', 'Çorum','Denizli','Diyarbakır', 'Edirne', 'Elazığ', 'Erzincan', 'Erzurum ', 'Eskişehir',
+        'Gaziantep', 'Giresun','Gümüşhane', 'Hakkari', 'Hatay', 'Isparta', 'Mersin', 'İstanbul', 'İzmir',
+        'Kars', 'Kastamonu', 'Kayseri','Kırklareli', 'Kırşehir', 'Kocaeli', 'Konya', 'Kütahya ', 'Malatya',
+        'Manisa', 'Kahramanmaraş', 'Mardin', 'Muğla', 'Muş', 'Nevşehir', 'Niğde', 'Ordu', 'Rize', 'Sakarya',
+        'Samsun', 'Siirt', 'Sinop', 'Sivas', 'Tekirdağ', 'Tokat', 'Trabzon  ', 'Tunceli', 'Şanlıurfa', 'Uşak',
+        'Van', 'Yozgat', 'Zonguldak', 'Aksaray', 'Bayburt ', 'Karaman', 'Kırıkkale', 'Batman', 'Şırnak',
+        'Bartın', 'Ardahan', 'Iğdır', 'Yalova', 'Karabük ', 'Kilis', 'Osmaniye ', 'Düzce']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+
+/// This is the stateful widget that the main application instantiates.
+class MyStatefulWidget2 extends StatefulWidget {
+  const MyStatefulWidget2({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget2> createState() => _MyStatefulWidgetState2();
+}
+
+/// This is the private State class that goes with MyStatefulWidget.
+class _MyStatefulWidgetState2 extends State<MyStatefulWidget2> {
+  String dropdownValue = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: const Icon(Icons.arrow_downward),
+      iconSize: 24,
+      elevation: 16,
+      style: const TextStyle(color: Colors.white),
+      underline: Container(
+        height: 2,
+        color: Colors.white,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          dropdownValue = newValue!;
+        });
+      },
+      items: <String>['', 'Adana','Adıyaman', 'Afyon', 'Ağrı', 'Amasya', 'Ankara', 'Antalya', 'Artvin',
         'Aydın', 'Balıkesir','Bilecik', 'Bingöl', 'Bitlis', 'Bolu', 'Burdur', 'Bursa', 'Çanakkale',
         'Çankırı', 'Çorum','Denizli','Diyarbakır', 'Edirne', 'Elazığ', 'Erzincan', 'Erzurum ', 'Eskişehir',
         'Gaziantep', 'Giresun','Gümüşhane', 'Hakkari', 'Hatay', 'Isparta', 'Mersin', 'İstanbul', 'İzmir',
