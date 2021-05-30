@@ -261,17 +261,18 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                         ),
                       ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.selfStarter,
-                        child: Text('Durumlar'),
-                      ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.selfStarter,
-                        child: Text('--------------'),
-                      ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.selfStarter,
-                        child: Text('Çıkış'),
+                      PopupMenuItem<WhyFarther>(
+                        value: WhyFarther.harder,
+                        child: ListTile(
+                          title: Text("Durumlar"),
+                          onTap: () {
+                            print('durumlar tikladin');
+                            Navigator.pop(context);
+                            _controller.animateToPage(11,
+                                duration: Duration(seconds: 1),
+                                curve: Curves.easeOut);
+                          },
+                        ),
                       ),
                     ]);
               } else if (index == 1) {
@@ -1481,6 +1482,70 @@ class _MyHomePageState extends State<MyHomePage> {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Lütfen Durum giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              ElevatedButton(
+                                style: style,
+                                onPressed: () {},
+                                child: const Text('Kaydet'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: const EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 20, bottom: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    title: Center(
+                        child: Text('Durum Tanımlama Ekranı',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6!
+                                .copyWith(fontWeight: FontWeight.bold))),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Flexible(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.only(
+                              left: 20.0, right: 20.0),
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Durum Kodu:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Durum Kodu giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Durum Adı:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Durum Adı giriniz';
                                   }
                                   return null;
                                 },
