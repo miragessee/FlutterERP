@@ -213,9 +213,18 @@ class _MyHomePageState extends State<MyHomePage> {
                           endIndent: 0,
                         ),
                       ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.selfStarter,
-                        child: Text('Müşteri Mali Bilgileri'),
+                      PopupMenuItem<WhyFarther>(
+                        value: WhyFarther.harder,
+                        child: ListTile(
+                          title: Text("Müşteri Mali Bilgileri"),
+                          onTap: () {
+                            print('müşteri mali bilgileri tikladin');
+                            Navigator.pop(context);
+                            _controller.animateToPage(8,
+                                duration: Duration(seconds: 1),
+                                curve: Curves.easeOut);
+                          },
+                        ),
                       ),
                       const PopupMenuItem<WhyFarther>(
                         value: WhyFarther.selfStarter,
@@ -1169,6 +1178,116 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
+              ),
+            ),
+            Card(
+              margin: const EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 20, bottom: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    title: Center(
+                        child: Text('Müşteri Mali Bilgileri Ekranı',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6!
+                                .copyWith(fontWeight: FontWeight.bold))),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Flexible(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.only(
+                              left: 20.0, right: 20.0),
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Müşteri Adı',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Müşteri Adı giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Banka Adı:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Banka Adı giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Şube Adı:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Şube Adı giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Hesap No:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Hesap No giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Ticari Sicil No:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Ticari Sicil No giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              Text('İl Seçiniz:'),
+                              const SizedBox(height: 16),
+                              MyStatefulWidget(),
+                              Text('İlçe Seçiniz:'),
+                              const SizedBox(height: 16),
+                              MyStatefulWidget2(),
+                              const SizedBox(height: 16),
+                              ElevatedButton(
+                                style: style,
+                                onPressed: () {},
+                                child: const Text('Kaydet'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
