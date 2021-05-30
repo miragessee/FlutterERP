@@ -364,9 +364,18 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                         ),
                       ),
-                      const PopupMenuItem<WhyFarther>(
-                        value: WhyFarther.selfStarter,
-                        child: Text('Ödemeler'),
+                      PopupMenuItem<WhyFarther>(
+                        value: WhyFarther.harder,
+                        child: ListTile(
+                          title: Text("Ödemeler"),
+                          onTap: () {
+                            print('ödemeler tikladin');
+                            Navigator.pop(context);
+                            _controller.animateToPage(17,
+                                duration: Duration(seconds: 1),
+                                curve: Curves.easeOut);
+                          },
+                        ),
                       ),
                     ]);
               } else if (index == 2) {
@@ -2246,6 +2255,109 @@ class _MyHomePageState extends State<MyHomePage> {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return 'Lütfen Tahsilat Tarihi giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              ElevatedButton(
+                                style: style,
+                                onPressed: () {},
+                                child: const Text('Kaydet'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: const EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 20, bottom: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    title: Center(
+                        child: Text('Ödemeler Ekranı',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline6!
+                                .copyWith(fontWeight: FontWeight.bold))),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Flexible(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.only(
+                              left: 20.0, right: 20.0),
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Ödeme No:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Ödeme No giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Tedarikçi:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Tedarikçi giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Tutar:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Tutar giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Satınalma No:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Satınalma No giriniz';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 16),
+                              TextFormField(
+                                readOnly: false,
+                                decoration: const InputDecoration(
+                                  labelText: 'Ödeme Tarihi:',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Lütfen Ödeme Tarihi giriniz';
                                   }
                                   return null;
                                 },
