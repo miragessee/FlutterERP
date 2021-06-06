@@ -1,5 +1,17 @@
+import 'dart:io';
+
+import 'package:baris_arslan_tez/data.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
+
+import 'report.dart';
+import 'examples.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,6 +54,37 @@ class _MyHomePageState extends State<MyHomePage> {
   final ButtonStyle style =
   ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
+  void _showPrintedToast(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Document printed successfully'),
+      ),
+    );
+  }
+
+  void _showSharedToast(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Document shared successfully'),
+      ),
+    );
+  }
+
+  Future<void> _saveAsFile(
+      BuildContext context,
+      LayoutCallback build,
+      PdfPageFormat pageFormat,
+      ) async {
+    final bytes = await build(pageFormat);
+
+    final appDocDir = await getApplicationDocumentsDirectory();
+    final appDocPath = appDocDir.path;
+    final file = File(appDocPath + '/' + 'document.pdf');
+    print('Save as file ${file.path} ...');
+    await file.writeAsBytes(bytes);
+    await OpenFile.open(file.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     double orjWidth = MediaQuery.of(context).size.width;
@@ -51,6 +94,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
     print(orjWidth);
     print(tabWidth);
+
+    var _data = CustomData();
+    var _hasData = false;
+    var _pending = false;
+
+    final actions = <PdfPreviewAction>[
+      if (!kIsWeb)
+        PdfPreviewAction(
+          icon: const Icon(Icons.save),
+          onPressed: _saveAsFile,
+        )
+    ];
 
     return DefaultTabController(
       length: 3,
@@ -384,9 +439,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     position: RelativeRect.fromSize(
                         Rect.fromLTRB(tabWidth * 2, 100, 0, 0), Size.infinite),
                     items: <PopupMenuEntry<WhyFarther>>[
-                      const PopupMenuItem<WhyFarther>(
+                      PopupMenuItem<WhyFarther>(
                         value: WhyFarther.harder,
-                        child: Text('Ürün Sorgulama'),
+                        child: ListTile(
+                          title: Text("Ürün Sorgulama"),
+                          onTap: () {
+                            print('ürün sorgulama tikladin');
+                            Navigator.pop(context);
+                            _controller.animateToPage(18,
+                                duration: Duration(seconds: 1),
+                                curve: Curves.easeOut);
+                          },
+                        ),
                       ),
                       const PopupMenuItem<WhyFarther>(
                         value: WhyFarther.smarter,
@@ -2376,6 +2440,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
+            ),
+            PdfPreview(
+              maxPageWidth: 700,
+              build: (format) => examples[0].builder(format, _data),
+              actions: actions,
+              onPrinted: _showPrintedToast,
+              onShared: _showSharedToast,
             ),
           ],
         ),
