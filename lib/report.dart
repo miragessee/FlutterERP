@@ -187,61 +187,14 @@ Future<Uint8List> generateReport(
         // Page layout
         return pw.Column(
           children: [
-            pw.Text('Budget Report',
+            pw.Text('Ürüne Göre Tedarikçi Raporu',
                 style: pw.TextStyle(
                   color: baseColor,
                   fontSize: 40,
                 )),
             pw.Divider(thickness: 4),
-            pw.Expanded(flex: 3, child: chart1),
-            pw.Divider(),
-            pw.Expanded(flex: 2, child: chart2),
             pw.SizedBox(height: 10),
-            pw.Row(
-              crossAxisAlignment: pw.CrossAxisAlignment.start,
-              children: [
-                pw.Expanded(
-                    child: pw.Column(children: [
-                      pw.Container(
-                        alignment: pw.Alignment.centerLeft,
-                        padding: const pw.EdgeInsets.only(bottom: 10),
-                        child: pw.Text(
-                          'Expense By Sub-Categories',
-                          style: pw.TextStyle(
-                            color: baseColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      pw.Text(
-                        'Total expenses are broken into different categories for closer look into where the money was spent.',
-                        textAlign: pw.TextAlign.justify,
-                      )
-                    ])),
-                pw.SizedBox(width: 10),
-                pw.Expanded(
-                  child: pw.Column(
-                    children: [
-                      pw.Container(
-                        alignment: pw.Alignment.centerLeft,
-                        padding: const pw.EdgeInsets.only(bottom: 10),
-                        child: pw.Text(
-                          'Spent vs. Saved',
-                          style: pw.TextStyle(
-                            color: baseColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      pw.Text(
-                        'Budget was originally \$$budget. A total of \$$expense was spent on the month of January which exceeded the overall budget by \$${expense - budget}',
-                        textAlign: pw.TextAlign.justify,
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            table,
           ],
         );
       },
@@ -249,53 +202,29 @@ Future<Uint8List> generateReport(
   );
 
   // Second page with a pie chart
-  document.addPage(
-    pw.Page(
-      pageFormat: pageFormat,
-      theme: theme,
-      build: (context) {
-        const chartColors = [
-          PdfColors.blue300,
-          PdfColors.green300,
-          PdfColors.amber300,
-          PdfColors.pink300,
-          PdfColors.cyan300,
-          PdfColors.purple300,
-          PdfColors.lime300,
-        ];
-
-        return pw.Column(
-          children: [
-            pw.Flexible(
-              child: pw.Chart(
-                title: pw.Text(
-                  'Expense breakdown',
-                  style: pw.TextStyle(
-                    color: baseColor,
-                    fontSize: 20,
-                  ),
-                ),
-                grid: pw.PieGrid(),
-                datasets: List<pw.Dataset>.generate(dataTable.length, (index) {
-                  final data = dataTable[index];
-                  final color = chartColors[index % chartColors.length];
-                  final value = (data[2] as num).toDouble();
-                  final pct = (value / expense * 100).round();
-                  return pw.PieDataSet(
-                    legend: '${data[0]}\n$pct%',
-                    value: value,
-                    color: color,
-                    legendStyle: pw.TextStyle(fontSize: 10),
-                  );
-                }),
-              ),
-            ),
-            table,
-          ],
-        );
-      },
-    ),
-  );
+  // document.addPage(
+  //   pw.Page(
+  //     pageFormat: pageFormat,
+  //     theme: theme,
+  //     build: (context) {
+  //       const chartColors = [
+  //         PdfColors.blue300,
+  //         PdfColors.green300,
+  //         PdfColors.amber300,
+  //         PdfColors.pink300,
+  //         PdfColors.cyan300,
+  //         PdfColors.purple300,
+  //         PdfColors.lime300,
+  //       ];
+  //
+  //       return pw.Column(
+  //         children: [
+  //           table,
+  //         ],
+  //       );
+  //     },
+  //   ),
+  // );
 
   // Return the PDF file content
   return document.save();
